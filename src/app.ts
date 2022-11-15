@@ -42,7 +42,7 @@ class App {
     const pokemonController = new PokemonController(new PokemonService());
 
     // Config express to use our Controller's routes
-    this.app.use('/pokemon', pokemonController.router);
+    this.app.use('/v1/pokemon', pokemonController.router);
   }
 }
 
