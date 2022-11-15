@@ -2,9 +2,9 @@
 
 - [x] Setup project
 - [x] Setup mongo with Docker
-- [x] Create GET /pokemon endpoint
-- [ ] Create POST /pokemon endpoint
-- [ ] Create GET /pokemon/:id endpoint
-- [ ] Create PATCH /pokemon/:id endpoint
-- [ ] Create DELETE /pokemon/:id endpoint
+- [x] Create GET /v1/pokemon endpoint
+- [x] Create POST /v1/pokemon endpoint
+- [x] Create GET /v1/pokemon/:id endpoint
+- [x] Create PUT /v1/pokemon/:id endpoint
+- [x] Create DELETE /v1/pokemon/:id endpoint
 - [ ] Create seed /seed from CSV
