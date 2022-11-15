@@ -10,6 +10,7 @@ export class PokemonController {
 
   public setRoutes() {
     this.router.get('/', this.sayHello);
+    this.router.post('/', this.add);
 
     this.router.get('/all', this.findAll);
   }
@@ -23,6 +24,15 @@ export class PokemonController {
     try {
       const pokemon = await this.pokemonService.findAll();
       res.send(pokemon);
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  };
+
+  private add = async (req: Request, res: Response) => {
+    try {
+      const addPokemonResult = await this.pokemonService.add(req.body);
+      res.send(addPokemonResult);
     } catch (e) {
       res.status(500).send(e);
     }

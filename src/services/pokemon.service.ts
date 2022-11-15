@@ -9,4 +9,9 @@ export class PokemonService {
   public findAll(): Promise<IPokemon[]> {
     return Pokemon.find().exec();
   }
+
+  public add(pokemon: IPokemon): Promise<IPokemon> {
+    const newPokemon = new Pokemon(pokemon);
+    return newPokemon.save();
+  }
 }
