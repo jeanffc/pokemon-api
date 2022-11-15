@@ -20,9 +20,9 @@ class App {
     this.app.use(express.json({ limit: '50mb' }));
     // Allows us to receive requests with data in x-www-form-urlencoded format
     this.app.use(express.urlencoded({ limit: '50mb', extended: true }));
-    // Enables morgan
+    // Enables morgan to show logs in console
     this.app.use(morgan('tiny'));
-    // Enables helmet
+    // Enables helmet to setting HTTP headers
     this.app.use(helmet());
     // Enables cors
     this.app.use(cors());
@@ -32,7 +32,7 @@ class App {
     // Creating a new instance of our Pokemon Controller
     const pokemonController = new PokemonController(new PokemonService());
 
-    // Telling express to use our Controller's routes
+    // Config express to use our Controller's routes
     this.app.use('/pokemon', pokemonController.router);
   }
 }
