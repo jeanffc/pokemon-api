@@ -9,9 +9,11 @@ export class PokemonController {
   }
 
   public setRoutes() {
-    this.router.get('/', (_: Request, res: Response) => {
-      const welcomeMessage = this.pokemonService.getWelcomeMessage();
-      res.send(welcomeMessage);
-    });
+    this.router.get('/', this.sayHello);
   }
+
+  private sayHello = (_: Request, res: Response) => {
+    const welcomeMessage = this.pokemonService.getWelcomeMessage();
+    res.send(welcomeMessage);
+  };
 }
