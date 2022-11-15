@@ -11,6 +11,7 @@ export class PokemonController {
   public setRoutes() {
     this.router.get('/', this.findAll);
     this.router.post('/', this.add);
+    this.router.route('/:id').get(this.find);
     this.router.route('/:id').put(this.update);
     this.router.route('/:id').delete(this.delete);
   }
@@ -30,6 +31,19 @@ export class PokemonController {
       res.status(201).send(addPokemonResult);
     } catch (e) {
       res.status(500).send(e);
+    }
+  };
+
+  private find = async (req: Request, res: Response) => {
+    try {
+      const pokemonResult = await this.pokemonService.find(req.params.id);
+      res.status(200).send(pokemonResult);
+    } catch (e: Error | unknown) {
+      if (e instanceof Error) {
+        res.status(500).send(e.message);
+      } else {
+        res.status(500).send(e);
+      }
     }
   };
 

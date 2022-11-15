@@ -11,6 +11,16 @@ export class PokemonService {
     return newPokemon.save();
   }
 
+  public find(id: string) {
+    const pokemon = Pokemon.findById(id).exec();
+
+    if (!pokemon) {
+      throw new Error(`Pokemon with id '${id}' not found`);
+    }
+
+    return pokemon;
+  }
+
   public async update(id: string, pokemon: IPokemon) {
     const updatedPokemon = await Pokemon.findByIdAndUpdate(id, pokemon).exec();
 
