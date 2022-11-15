@@ -32,9 +32,17 @@ class App {
   }
 
   private async setMongoConfig() {
-    mongoose.Promise = global.Promise;
-    await mongoose.connect(MONGO_URL);
-    console.log('Connected to MongoDB');
+    try {
+      mongoose.Promise = global.Promise;
+      await mongoose.connect(MONGO_URL);
+      console.log('Connected to MongoDB');
+    } catch (e: Error | unknown) {
+      if (e instanceof Error) {
+        console.error(e.message);
+      } else {
+        console.error(e);
+      }
+    }
   }
 
   private setControllers() {
