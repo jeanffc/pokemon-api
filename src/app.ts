@@ -3,8 +3,10 @@ import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import mongoose from 'mongoose';
 import { PokemonController } from './controllers/pokemon.controller';
 import { PokemonService } from './services/pokemon.service';
+import { MONGO_URL } from './constants/pokeapi.constants';
 
 class App {
   public app: Application;
@@ -12,6 +14,7 @@ class App {
   constructor() {
     this.app = express();
     this.setConfig();
+    this.setMongoConfig();
     this.setControllers();
   }
 
@@ -26,6 +29,12 @@ class App {
     this.app.use(helmet());
     // Enables cors
     this.app.use(cors());
+  }
+
+  private async setMongoConfig() {
+    mongoose.Promise = global.Promise;
+    await mongoose.connect(MONGO_URL);
+    console.log('Connected to MongoDB');
   }
 
   private setControllers() {
