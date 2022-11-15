@@ -1,7 +1,7 @@
 ## TODOS
 
 - [x] Setup project
-- [ ] Setup Docker
+- [x] Setup mongo with Docker
 - [x] Create GET /pokemon endpoint
 - [ ] Create POST /pokemon endpoint
 - [ ] Create GET /pokemon/:id endpoint
