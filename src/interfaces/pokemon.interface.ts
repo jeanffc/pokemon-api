@@ -1,5 +1,6 @@
 import { Document } from 'mongoose';
 export interface IPokemon extends Document {
+  id: number;
   name: string;
   type1: string;
   type2: string;

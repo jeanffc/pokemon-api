@@ -6,7 +6,7 @@ import { connectToMongo, disconnectToMongo } from '../src/config/database';
 import { ICSVPokemon } from '../src/interfaces/pokemon.interface';
 import { Pokemon } from '../src/models/pokemon.model';
 
-const pokemonPath = path.join(__dirname, './../data/pokemon.csv');
+const pokemonPath = path.join(__dirname, './pokemon.csv');
 
 (async () => {
   await connectToMongo();
@@ -41,34 +41,11 @@ export async function read(): Promise<ICSVPokemon[]> {
 }
 
 export async function write(seedData: ICSVPokemon[]) {
-  //   for (let index = 0; index < seedData.length; index++) {
-  //     try {
-  //       const pokemonNormalized = {
-  //         name: seedData[index].Name,
-  //         type1: seedData[index]['Type 1'],
-  //         type2: seedData[index]['Type 2'],
-  //         total: +seedData[index].Total,
-  //         hp: +seedData[index].HP,
-  //         attact: +seedData[index].Attack,
-  //         defense: +seedData[index].Defense,
-  //         spAtk: +seedData[index]['Sp. Atk'],
-  //         spDef: +seedData[index]['Sp. Def'],
-  //         speed: +seedData[index].Speed,
-  //         generation: +seedData[index].Generation,
-  //         legendary: seedData[index].Legendary === 'true'
-  //       };
-  //       const newPokemon = new Pokemon(pokemonNormalized);
-  //       console.log(newPokemon);
-  //       await newPokemon.save();
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-
   await Promise.all(
     seedData.map(async (csvPokemon) => {
       try {
         const pokemonNormalized = {
+          id: +csvPokemon['#'],
           name: csvPokemon.Name,
           type1: csvPokemon['Type 1'],
           type2: csvPokemon['Type 2'],
@@ -85,8 +62,12 @@ export async function write(seedData: ICSVPokemon[]) {
         const newPokemon = new Pokemon(pokemonNormalized);
         console.log(newPokemon);
         await newPokemon.save();
-      } catch (error) {
-        console.log(error);
+      } catch (e: Error | unknown) {
+        if (e instanceof Error) {
+          console.log(e?.message);
+        } else {
+          console.log(e);
+        }
       }
     })
   );

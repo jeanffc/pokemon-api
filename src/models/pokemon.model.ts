@@ -2,6 +2,7 @@ import { model, Schema } from 'mongoose';
 import { IPokemon } from '../interfaces/pokemon.interface';
 
 const PokemonSchema = new Schema({
+  id: { type: Number, required: [true, 'Field is required'] }, // NOTE: it is possible N pokemons with the same ID, eg: (ID:720) HoopaHoopa Confined and (ID:720) HoopaHoopa Unbound
   name: { type: String, required: [true, 'Field is required'] },
   type1: { type: String, required: [true, 'Field is required'] },
   type2: { type: String },

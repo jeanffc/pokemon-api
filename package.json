@@ -8,8 +8,8 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "start:dev": "npx nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/server.ts",
-    "mongo:seed:pokemons": "ts-node scripts/mongodb-seed.ts pokemons",
-    "mongo:seed:clear": "ts-node scripts/mongodb-seed.ts clear"
+    "mongo:seed:pokemons": "ts-node scripts/seed.ts pokemons",
+    "mongo:seed:clear": "ts-node scripts/seed.ts clear"
   },
   "dependencies": {
     "cors": "^2.8.5",

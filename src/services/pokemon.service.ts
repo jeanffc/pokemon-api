@@ -3,7 +3,7 @@ import { Pokemon } from '../models/pokemon.model';
 
 export class PokemonService {
   public findAll(): Promise<IPokemon[]> {
-    return Pokemon.find().exec();
+    return Pokemon.find().sort({ id: 1 }).exec();
   }
 
   public add(pokemon: IPokemon): Promise<IPokemon> {
@@ -12,7 +12,7 @@ export class PokemonService {
   }
 
   public find(id: string) {
-    const pokemon = Pokemon.findById(id).exec();
+    const pokemon = Pokemon.findOne({ id: id }).exec();
 
     if (!pokemon) {
       throw new Error(`Pokemon with id '${id}' not found`);
