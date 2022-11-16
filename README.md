@@ -61,12 +61,12 @@ src\
 
 - [x] Setup project
 - [x] Setup mongo with Docker
-- [x] Create GET /v1/pokemon endpoint
-- [x] Create POST /v1/pokemon endpoint
-- [x] Create GET /v1/pokemon/:id endpoint
-- [x] Create PUT /v1/pokemon/:id endpoint
-- [x] Create DELETE /v1/pokemon/:id endpoint
+- [x] Create GET /v1/pokemons?page=3&limit=3 endpoint
+- [x] Create POST /v1/pokemons endpoint
+- [x] Create GET /v1/pokemons/:id endpoint
+- [x] Create PUT /v1/pokemons/:id endpoint
+- [x] Create DELETE /v1/pokemons/:id endpoint
 - [x] Create seeds from CSV
-- [ ] Paginate results
+- [x] Paginate results
 - [ ] Create swagger (Documentation)
 - [ ] Create tests
