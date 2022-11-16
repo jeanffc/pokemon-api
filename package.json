@@ -6,11 +6,15 @@
   "author": "Jean Campos <jean@route.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon",
-    "start:dev": "npx nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/server.ts"
+    "start": "ts-node src/server.ts",
+    "start:dev": "npx nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/server.ts",
+    "mongo:seed:pokemons": "ts-node scripts/mongodb-seed.ts pokemons",
+    "mongo:seed:clear": "ts-node scripts/mongodb-seed.ts clear"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "csv-stringify": "^6.2.1",
     "express": "^4.18.2",
     "helmet": "^6.0.0",
     "mongoose": "^6.7.2",
