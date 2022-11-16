@@ -1,4 +1,5 @@
 import { Request, Response, Router } from 'express';
+import { QueryParams } from '../interfaces/pokemon.interface';
 import { PokemonService } from '../services/pokemon.service';
 
 export class PokemonController {
@@ -16,10 +17,10 @@ export class PokemonController {
     this.router.route('/:id').delete(this.delete);
   }
 
-  private findAll = async (_: Request, res: Response) => {
+  private findAll = async (req: Request<{}, {}, {}, QueryParams>, res: Response) => {
     try {
-      const pokemon = await this.pokemonService.findAll();
-      res.status(200).send(pokemon);
+      const pokemons = await this.pokemonService.findAll(req.query.page, req.query.limit);
+      res.status(200).send(pokemons);
     } catch (e) {
       res.status(500).send(e);
     }

@@ -3,12 +3,12 @@
 Install dependecies:
 
 ```
-npm i
+yarn install
 ```
 
 ## Commands
 
-Running:
+Up Docker (Mongo):
 
 ```
 docker-compose up
@@ -20,7 +20,13 @@ Running locally:
 yarn start:dev
 ```
 
-## API Documentation
+Running seeds:
+
+```
+yarn mongo:seed:pokemons
+```
+
+## Documentation
 
 List of available routes:
 
@@ -60,7 +66,7 @@ src\
 - [x] Create GET /v1/pokemon/:id endpoint
 - [x] Create PUT /v1/pokemon/:id endpoint
 - [x] Create DELETE /v1/pokemon/:id endpoint
-- [x] Create seed /seed from CSV
+- [x] Create seeds from CSV
 - [ ] Paginate results
 - [ ] Create swagger (Documentation)
 - [ ] Create tests

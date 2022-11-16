@@ -1,9 +1,29 @@
-import { IPokemon } from '../interfaces/pokemon.interface';
+import { IPokemon, IPokemonResponse } from '../interfaces/pokemon.interface';
 import { Pokemon } from '../models/pokemon.model';
 
 export class PokemonService {
-  public findAll(): Promise<IPokemon[]> {
-    return Pokemon.find().sort({ id: 1 }).exec();
+  public async findAll(reqPageNumber?: string, reqLimit?: string) {
+    const results = {} as IPokemonResponse;
+
+    const total = await Pokemon.countDocuments().exec();
+    const pageNumber = (reqPageNumber && parseInt(reqPageNumber)) || 0;
+    const limit = (reqLimit && parseInt(reqLimit)) || 12;
+    const startIndex = pageNumber * limit;
+    const endIndex = (pageNumber + 1) * limit;
+
+    if (startIndex > 0) {
+      results.previous = pageNumber - 1;
+    }
+    if (endIndex < total) {
+      results.next = pageNumber + 1;
+    }
+
+    results.limit = limit;
+    results.total = total;
+
+    results.data = await Pokemon.find().sort({ id: 1 }).skip(startIndex).limit(limit).exec();
+
+    return results;
   }
 
   public add(pokemon: IPokemon): Promise<IPokemon> {

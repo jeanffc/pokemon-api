@@ -1,4 +1,5 @@
 import { Document } from 'mongoose';
+
 export interface IPokemon extends Document {
   id: number;
   name: string;
@@ -30,3 +31,15 @@ export interface ICSVPokemon {
   Generation: string;
   Legendary: string;
 }
+export interface IPokemonResponse {
+  previous: number;
+  next: number;
+  limit: number;
+  total: number;
+  data: any;
+}
+
+export type QueryParams = {
+  page?: string;
+  limit?: string;
+};
