@@ -6,6 +6,10 @@ Install dependecies:
 yarn install
 ```
 
+## Prerequisites
+
+- Node.js (LTS), Yarn, Docker, and a REST client (Insomnia, Postman, or curl).
+
 ## Commands
 
 Up Docker (Mongo):
